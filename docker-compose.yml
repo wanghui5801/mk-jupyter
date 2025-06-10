@@ -1,13 +1,13 @@
 services:
   jupyter:
     image: xhh1128/mk-jupyter:latest
-    container_name: jupyter
+    container_name: mk-jupyter
     user: root
-    working_dir: /home/wanghui
+    working_dir: /home/your_username
     ports:
       - "8888:8888"
     environment:
-      NB_USER: wanghui
+      NB_USER: your_username
       CHOWN_HOME: "yes"
       DOCKER_STACKS_JUPYTER_CMD: nbclassic
     command:

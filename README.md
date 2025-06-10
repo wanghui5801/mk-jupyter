@@ -18,3 +18,5 @@ and also by `docker-compose.yml` file, you can download the file from this repo 
 docker compose up -d
 ```
 then it will run at backend.
+
+To config better, the relevent information can be found in [Jupyter Docker Document](https://jupyter-docker-stacks.readthedocs.io/en/latest/).
