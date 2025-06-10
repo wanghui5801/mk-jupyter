@@ -1,0 +1,16 @@
+services:
+  jupyter:
+    image: xhh1128/mk-jupyter:latest
+    container_name: jupyter
+    user: root
+    working_dir: /home/wanghui
+    ports:
+      - "8888:8888"
+    environment:
+      NB_USER: wanghui
+      CHOWN_HOME: "yes"
+      DOCKER_STACKS_JUPYTER_CMD: nbclassic
+    command:
+      - start-notebook.py
+      # - you can add some other commands here
+    restart: unless-stopped
