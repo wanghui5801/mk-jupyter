@@ -3,6 +3,7 @@ ARG BASE_IMAGE=quay.io/jupyter/datascience-notebook
 FROM $BASE_IMAGE
 
 RUN mamba install --yes 'jupyterlab_rise' && \
+    mamba install --yes -c conda-forge xz igraph && \
     mamba clean --all -f -y && \
     fix-permissions "${CONDA_DIR}" && \
     fix-permissions "/home/${NB_USER}"
@@ -21,6 +22,9 @@ RUN "${CONDA_DIR}/envs/py38/bin/python"  -m ipykernel install --prefix=/opt/cond
 
 
 RUN rm -rf /opt/conda/share/jupyter/kernels/python3
+
+RUN sudo apt update && \
+    sudo apt install cmake liblzma-dev lzma lzma-dev libpcre2-dev libbz2-dev zlib1g-dev -y
 
 RUN mkdir -p /etc/jupyter && \
     echo "c.KernelSpecManager.ensure_native_kernel = False" \
