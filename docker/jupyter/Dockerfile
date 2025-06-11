@@ -2,8 +2,6 @@
 ARG BASE_IMAGE=quay.io/jupyter/datascience-notebook
 FROM $BASE_IMAGE
 
-RUN apt update && apt install -y cmake liblzma-dev lzma lzma-dev libpcre2-dev libbz2-dev zlib1g-dev
-
 RUN mamba install --yes 'jupyterlab_rise' && \
     mamba install --yes -c conda-forge xz igraph && \
     mamba clean --all -f -y && \
