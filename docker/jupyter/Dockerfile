@@ -1,21 +1,8 @@
+
 ARG BASE_IMAGE=quay.io/jupyter/datascience-notebook
 FROM $BASE_IMAGE
 
-# 设置非交互式安装
-ENV DEBIAN_FRONTEND=noninteractive
-
-# 更新包列表并安装必要的包
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
-    cmake \
-    liblzma-dev \
-    lzma \
-    lzma-dev \
-    libpcre2-dev \
-    libbz2-dev \
-    zlib1g-dev && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+RUN apt update && apt install -y cmake liblzma-dev lzma lzma-dev libpcre2-dev libbz2-dev zlib1g-dev
 
 RUN mamba install --yes 'jupyterlab_rise' && \
     mamba install --yes -c conda-forge xz igraph && \
