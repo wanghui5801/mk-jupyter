@@ -20,11 +20,10 @@ RUN "${CONDA_DIR}/envs/py38/bin/python"  -m ipykernel install --prefix=/opt/cond
     "${CONDA_DIR}/envs/py310/bin/python" -m ipykernel install --prefix=/opt/conda  \
         --name "python310" --display-name "Python 3.10"
 
-
 RUN rm -rf /opt/conda/share/jupyter/kernels/python3
 
-RUN sudo apt update && \
-    sudo apt install cmake liblzma-dev lzma lzma-dev libpcre2-dev libbz2-dev zlib1g-dev -y
+RUN apt update && \
+    apt install -y cmake liblzma-dev lzma lzma-dev libpcre2-dev libbz2-dev zlib1g-dev
 
 RUN mkdir -p /etc/jupyter && \
     echo "c.KernelSpecManager.ensure_native_kernel = False" \
@@ -32,6 +31,5 @@ RUN mkdir -p /etc/jupyter && \
 
 RUN fix-permissions "${CONDA_DIR}" && \
     fix-permissions "/home/${NB_USER}"
-
 
 USER ${NB_UID}
